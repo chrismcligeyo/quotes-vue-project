@@ -23,7 +23,7 @@
         cursor: pointer;
 
     }
-    .qoute:hover{
+    .quote:hover{
         background-color: #ffe2e2;
     }
 
