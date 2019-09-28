@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <app-header></app-header>
+    <app-header :quoteCount=" quotes.length" :maxQuotes="maxQuotes"></app-header>
     <app-new-quote @quoteAdded="newQuote"></app-new-quote><!--@quteadded is custom event created in Newquote-->
     <!--we are passing the Quote array to the QuoteGrid-->
       <app-quote-grid :quotes="quotes"  @quoteDeleted="deleteQuote"></app-quote-grid><!--App.vue is parent. :quotes is prop set so as to communicate with child QuoteGrid which has props:['quotes']-->
@@ -27,21 +27,26 @@ export default {
     }
 
   },
+
   components: {
     'app-quote-grid': QuoteGrid,
     'app-new-quote': NewQuote,
-    appHeader: Header
+    'app-header': Header
+
   },
+
   methods: {
     newQuote(quote) {// this.$emit('quoteAdded', this.quote); this.quote is the quote in newQuote(quote) . This is would be done as if it wer above <app-new-quote @quoteAdded="newQuote($event)"></app-new-quote> $event being this.quote
 
       this.quotes.push(quote);
 
-  }
-},
-  deleteQuote(index) {
-    this.quotes.splice(index, 1); //start splicing at the position of index, and splice 1 element. remove one element starting from position of index
-  }
+    },
+    deleteQuote(index) {
+      this.quotes.splice(index, 1); //start splicing at the position of index, and splice 1 element. remove one element starting from position of index
+    }
+  },
+
+
 }
 
 </script>
