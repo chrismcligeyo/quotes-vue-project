@@ -2,7 +2,7 @@
   <div class="container">
     <app-new-quote @quoteAdded="newQuote"></app-new-quote><!--@quteadded is custom event created in Newquote-->
     <!--we are passing the Quote array to the QuoteGrid-->
-      <app-quote-grid :quotes="quotes"></app-quote-grid><!--App.vue is parent. :quotes is prop set so as to communicate with child QuoteGrid which has props:['quotes']-->
+      <app-quote-grid :quotes="quotes"  @quoteDeleted="deleteQuote"></app-quote-grid><!--App.vue is parent. :quotes is prop set so as to communicate with child QuoteGrid which has props:['quotes']-->
   <!--add info box-->
     <div class="row">
       <div class="col-sm-12 text-center">
@@ -35,7 +35,10 @@ export default {
       this.quotes.push(quote);
 
   }
-}
+},
+  deleteQuote(index) {
+    this.quotes.splice(index, 1); //start splicing at the position of index, and splice 1 element. remove one element starting from position of index
+  }
 }
 
 </script>

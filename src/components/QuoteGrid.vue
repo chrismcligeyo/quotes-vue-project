@@ -2,7 +2,7 @@
     <!--QuoteGrid displays all Quotes-->
     <div class="row">
         <!--loop through all quotes to render that single quote-->
-        <app-quote v-for="quote in quotes">{{ quote }}</app-quote>
+        <app-quote v-for="(quote,index) in quotes" @click.native="deleteQuote(index)">{{ quote }}</app-quote><!--@click.native  will register a click on Quote.vue.if was just at click would not work -->
     </div>
 </template>
 
@@ -13,8 +13,13 @@
         props: ['quotes'],
         components: {
             'app-quote':Quote
-        }
+        },
+        methods: {
+            deleteQuote(index) {
+                this.$emit('quoteDeleted', index);//emit own event such that quotegrid communicates with parent App.vue.
+            }
 
+    }
     }
 </script>
 

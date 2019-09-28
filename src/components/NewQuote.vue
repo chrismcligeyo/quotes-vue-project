@@ -22,7 +22,7 @@
         methods: {
             //when you create new we want to add NewQuote to parent element App.vue
             createNew() { //emit new quote. connects NewQuote childto parent container App.vue. whatever you add when click button will be displayed in parent container too
-                this.$emit('quoteAdded', this.quote);
+                this.$emit('quoteAdded', this.quote);// this.quote will be updated all the time coz we are binding with two way binding
                 //clearform after adding quote
                 this.quote = '';
             }
